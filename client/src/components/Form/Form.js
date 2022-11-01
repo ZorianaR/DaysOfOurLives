@@ -3,8 +3,9 @@ import { TextField, Button, Typography, Paper } from '@material-ui/core';
 import useStyles from './styles';
 import FileBase from 'react-file-base64';
 import { useDispatch } from 'react-redux';
-import { createPost ,updatePost } from '../../actions/posts';
 import { useSelector } from 'react-redux';
+import { createPost ,updatePost } from '../../actions/posts';
+
 
 //
 const Form = ({ currentId, setCurrentId}) => {
@@ -22,20 +23,22 @@ const Form = ({ currentId, setCurrentId}) => {
         if(currentId)
         {
             dispatch(updatePost(currentId,postData))
-
-        }else{
-            dispatch(createPost(postData))
+            
+        } else{
+            dispatch(createPost(postData))    
+                    
         }
-        
+        clear()
     }
     const clear = () => {
-        
-      };
+        setCurrentId(null);
+        setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
+    };
     
     return(
         <Paper className={classes.paper}>
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
-                <Typography variant="h5">Додай момент...</Typography>
+                <Typography variant="h5">{currentId ?'Редагуй':'Додай'} момент...</Typography>
 
                 <TextField 
                     name="creator" 
