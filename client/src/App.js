@@ -20,6 +20,7 @@ const App = () =>{
 
     return (
         <Container maxidth="lg">
+            {/* header */}
             <AppBar className={classes.appBar} position="static" color="inherit">
                 <Typography className={classes.heading} varaint="h2" align="center">
                     DaysOfOurLives
