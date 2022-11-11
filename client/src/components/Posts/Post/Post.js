@@ -27,11 +27,12 @@ const Post = ({post, setCurrentId}) => {
         </div>
         <Typography className={classes.title}  variant="h5" gutterBottom >{post.title}</Typography>
         <CardContent>
-          <Typography  variant="h5" gutterBottom >{post.message}</Typography>
+          {/* problem with component p */}
+          <Typography  variant="body2" color="textSecondary" component="p" >{post.message}</Typography>
         </CardContent>
         <CardActions className={classes.cardActions}>
-          <Button size="small" color="primary" onClick={() =>dispatch(likePost(post._id))}><ThumbUpAltIcon fontSize="small" /> Вподобайки    {post.likeCount} </Button>
-          <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id)) }><DeleteIcon fontSize="small" /> Видалити</Button>
+          <Button size="small" color="primary" onClick={() =>dispatch(likePost(post._id))}><ThumbUpAltIcon fontSize="small" />&nbsp; Вподобайки &nbsp;{post.likeCount} </Button>
+          <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id)) }><DeleteIcon fontSize="small" />&nbsp; Видалити &nbsp;</Button>
         </CardActions>
       </Card>
     );
