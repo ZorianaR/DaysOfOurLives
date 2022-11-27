@@ -3,18 +3,27 @@ import { Avatar, Button,Paper,Grid,Typography,Container, TextField } from '@mate
 import useStyles from './styles'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Input from './Input';
+import {useNavigate} from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { signin, signup } from '../../actions/auth.js';
 
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
 const Auth = () => {
     const classes = useStyles();
     const [showPassword, setShowPassword] = useState(false);
+    const dispatch = useDispatch();
+    const history = useNavigate();
     const handleShowPassword = () => setShowPassword((prevShowPassword) =>!prevShowPassword );
     const [isSignup, setIsSignup] = useState(false);
     const [formData, setFormData] = useState(initialState);
     const handleSubmit = (e) => {
       e.preventDefault();
-
+      if(isSignup){
+        dispatch(signup(formData,history))
+      }else{
+        dispatch(signin(formData,history))
+      }
       console.log(formData);
     };
     const handleChange = (e) => {
@@ -22,7 +31,7 @@ const Auth = () => {
     };
     const switchMode = () => {
       setIsSignup((prevIsSignup)=>!prevIsSignup);
-      handleShowPassword(false);
+      setShowPassword(false);
     };
   return (
     <Container component="main" maxWidth="xs">
