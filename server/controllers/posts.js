@@ -59,11 +59,11 @@ export const likePost = async (req, res) => {
 
     const index = post.likes.findIndex((id)=>id=== String(req.userId));
 
-    if (idex===-1){
+    if (index===-1){
         post.likes.push(req.userId);
 
     }else{
-        post.likes = post.likes.filter((id)=> id!== tring(req.userId))
+        post.likes = post.likes.filter((id)=> id!== String(req.userId))
 
     }
 
