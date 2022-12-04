@@ -24,11 +24,11 @@ const Post = ({post, setCurrentId}) => {
           </>
         );
       }
-        return 
+        return(
           <>
             <ThumbUpAltOutlined fontSize="small" />
             &nbsp;Вподобайки
-          </>
+          </>)
     }
 
     return(

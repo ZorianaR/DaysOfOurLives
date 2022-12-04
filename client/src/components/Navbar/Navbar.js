@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import { AppBar, Typography, Toolbar, Avatar, Button} from '@material-ui/core';
 import {Link, useNavigate, useLocation} from 'react-router-dom';
-import monster from '../../images/monster.jpg';
+import monster from '../../images/clock.jpg';
 import useStyles from './styles';
 import { useDispatch } from 'react-redux';
 import decode from "jwt-decode";
@@ -14,8 +14,9 @@ const Navbar = () => {
     const location =useLocation();
     const logout = () => {
       dispatch({type: 'LOGOUT'});
-      history('/')
+      history('/auth')
       setUser(null);
+     
     }
     useEffect(()=>{
       const token = user?.token;
@@ -29,10 +30,12 @@ const Navbar = () => {
       setUser(JSON.parse(localStorage.getItem('profile')))
     },[location])
     return (
+        
         <AppBar className={classes.appBar} position="static" color="inherit">
            <div className={classes.brandContainer}>
-        <Typography component={Link} to="/" className={classes.heading} variant="h2" align="center">DaysOfOurLives</Typography>
-        <img className={classes.image} src={monster} alt="monster" height="60" />
+           <img className={classes.image} src={monster} alt="monster" height="60" />
+        <Typography component={Link} to="/" className={classes.heading} variant="h4" align="center">  Дні нашого життя</Typography>
+        
             </div>
             <Toolbar className={classes.toolbar}>
         {user? (
